@@ -1,0 +1,53 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+ /out/
+
+# production
+/build
+
+# Bun
+/bun.lockb
+
+# environment variables (CRITICAL)
+.env
+.env.local
+.env.production
+.env.development
+.env.*.local
+
+# Firebase
+.firebase
+*.pem
+
+# misc
+.DS_Store
+Thumbs.db
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+bun-debug.log*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+*.pdf
+
