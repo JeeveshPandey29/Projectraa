@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
 import {
   onAuthStateChanged,
   signInWithPopup,
@@ -23,7 +29,11 @@ interface AuthContextType {
 
   signInWithGoogle: () => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<void>;
-  signUpWithEmail: (email: string, password: string, displayName: string) => Promise<void>;
+  signUpWithEmail: (
+    email: string,
+    password: string,
+    displayName: string
+  ) => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
   signOut: () => Promise<void>;
   setUserRole: (role: UserRole, displayName?: string) => Promise<void>;
@@ -36,10 +46,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // 🔐 Forgot password
+  // 🔐 FORGOT PASSWORD (FIXED)
   const resetPassword = async (email: string) => {
     if (!email) throw new Error("Please enter your email first");
-    await sendPasswordResetEmail(auth, email);
+
+    await sendPasswordResetEmail(auth, email, {
+      url:
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:3000/reset-password"
+          : "https://projectra.vercel.app/reset-password",
+      handleCodeInApp: true,
+    });
   };
 
   // 🔥 Auth state listener
@@ -67,31 +84,37 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => unsubscribe();
   }, []);
 
-  // 🟢 Google login
+  // 🟢 Google login (popup-safe)
   let googlePopupPromise: Promise<any> | null = null;
 
-    const signInWithGoogle = async () => {
-      if (googlePopupPromise) return; // prevent double popup
+  const signInWithGoogle = async () => {
+    if (googlePopupPromise) return;
 
-      try {
-        googlePopupPromise = signInWithPopup(auth, googleProvider);
-        await googlePopupPromise;
-      } finally {
-        googlePopupPromise = null;
-      }
-    };
-
+    try {
+      googlePopupPromise = signInWithPopup(auth, googleProvider);
+      await googlePopupPromise;
+    } finally {
+      googlePopupPromise = null;
+    }
+  };
 
   // 🟢 Email login
   const signInWithEmail = async (email: string, password: string) => {
     await signInWithEmailAndPassword(auth, email, password);
   };
 
-  // 🟢 Email signup (NO Firestore yet)
-  const signUpWithEmail = async (email: string, password: string, displayName: string) => {
-    const cred = await createUserWithEmailAndPassword(auth, email, password);
+  // 🟢 Email signup
+  const signUpWithEmail = async (
+    email: string,
+    password: string,
+    displayName: string
+  ) => {
+    const cred = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
     await updateProfile(cred.user, { displayName });
-    // Firestore user will be created after role selection
   };
 
   // 🎓 Create Firestore user after role selection

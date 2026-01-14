@@ -70,7 +70,6 @@ export function LoginPage() {
   ) => {
     setNotify({ message, type });
 
-    // slide out
     setTimeout(() => {
       const el = document.getElementById("auth-notification");
       if (el) {
@@ -78,7 +77,6 @@ export function LoginPage() {
       }
     }, 4600);
 
-    // remove
     setTimeout(() => {
       setNotify(null);
     }, 5000);
@@ -144,7 +142,6 @@ export function LoginPage() {
         }
       `}</style>
 
-      {/* MAIN UI (UNCHANGED) */}
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4">
         <Card className="w-full max-w-md border-0 bg-white/10 backdrop-blur-xl shadow-2xl">
           <CardHeader className="text-center space-y-4 pb-2">
@@ -182,6 +179,7 @@ export function LoginPage() {
                 <TabsTrigger value="signup">Sign Up</TabsTrigger>
               </TabsList>
 
+              {/* LOGIN */}
               <TabsContent value="login" className="pt-4">
                 <form onSubmit={handleEmailSignIn} className="space-y-4">
                   <Input
@@ -191,6 +189,7 @@ export function LoginPage() {
                     onChange={(e) => setEmail(e.target.value)}
                     className="bg-white/5 border-white/10 text-white"
                   />
+
                   <Input
                     type="password"
                     placeholder="••••••••"
@@ -199,12 +198,45 @@ export function LoginPage() {
                     className="bg-white/5 border-white/10 text-white"
                   />
 
+                  {/* 🔐 FORGOT PASSWORD (RESTORED) */}
+                  <div className="text-right">
+                    <button
+                      type="button"
+                      onClick={async () => {
+                        if (!email) {
+                          showNotification(
+                            "Please enter your email to reset password.",
+                            "error"
+                          );
+                          return;
+                        }
+
+                        try {
+                          await resetPassword(email);
+                          showNotification(
+                            "Password reset link sent to your email.",
+                            "success"
+                          );
+                        } catch {
+                          showNotification(
+                            "Unable to send reset email. Try again later.",
+                            "error"
+                          );
+                        }
+                      }}
+                      className="text-sm text-emerald-400 hover:text-emerald-300 transition"
+                    >
+                      Forgot password?
+                    </button>
+                  </div>
+
                   <Button className="w-full bg-emerald-500">
                     Sign In
                   </Button>
                 </form>
               </TabsContent>
 
+              {/* SIGN UP */}
               <TabsContent value="signup" className="pt-4">
                 <form onSubmit={handleEmailSignUp} className="space-y-4">
                   <Input
@@ -213,6 +245,7 @@ export function LoginPage() {
                     onChange={(e) => setDisplayName(e.target.value)}
                     className="bg-white/5 border-white/10 text-white"
                   />
+
                   <Input
                     type="email"
                     placeholder="name@example.com"
@@ -220,6 +253,7 @@ export function LoginPage() {
                     onChange={(e) => setEmail(e.target.value)}
                     className="bg-white/5 border-white/10 text-white"
                   />
+
                   <Input
                     type="password"
                     placeholder="••••••••"
