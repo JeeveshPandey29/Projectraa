@@ -1,10 +1,10 @@
-## 🚀 Projectra
+## 🚀 Projectraa
 
 A full-stack Project & Hackathon Management Platform
 
-Projectra is a modern, end-to-end project tracking and innovation management platform designed for universities, hackathons, and project-based learning (PBL) environments. It enables students, teachers, and administrators to collaborate, track progress, and evaluate real-world projects using industry-grade tools.
+Projectraa is a modern, end-to-end project tracking and innovation management platform designed for universities, hackathons, and project-based learning (PBL) environments. It enables students, teachers, and administrators to collaborate, track progress, and evaluate real-world projects using industry-grade tools.
 
-Unlike basic submission portals, Projectra manages the entire lifecycle of a project — from idea, team formation, sprints, tasks, reviews, and final submission — all inside one secure web platform.
+Unlike basic submission portals, Projectraa manages the entire lifecycle of a project — from idea, team formation, sprints, tasks, reviews, and final submission — all inside one secure web platform.
 
 ## 🌟 Features
 
@@ -44,7 +44,7 @@ Unlike basic submission portals, Projectra manages the entire lifecycle of a pro
 
 ### 🔐 Authentication
 
-- Projectra uses Google Firebase Authentication with:
+- Projectraa uses Google Firebase Authentication with:
 
 - Google Sign-In
 
@@ -133,7 +133,7 @@ bun run build
 
 ### 🎓 Use Cases
 
-Projectra is ideal for:
+Projectraa is ideal for:
 
 - Hackathons
 

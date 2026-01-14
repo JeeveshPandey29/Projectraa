@@ -165,7 +165,7 @@ export function LoginPage() {
             </div>
 
             <CardTitle className="text-2xl font-bold text-white">
-              Projectra
+              Projectraa
             </CardTitle>
 
             <CardDescription className="text-slate-300">

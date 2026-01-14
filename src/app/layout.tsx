@@ -10,7 +10,7 @@ import { Toaster } from "../components/ui/toaster";
 
 
 export const metadata: Metadata = {
-  title: "Projectra",
+  title: "Projectraa",
   description: "Project-Based Learning Management System",
 };
 
@@ -41,7 +41,7 @@ export default function RootLayout({
           data-include-search-params="true"
           data-only-in-iframe="true"
           data-debug="true"
-          data-custom-data='{"appName": "Projectra", "version": "1.0.0"}'
+          data-custom-data='{"appName": "Projectraa", "version": "1.0.0"}'
         />
 
         <Providers>

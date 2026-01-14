@@ -66,7 +66,7 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
                 </svg>
               </div>
                 <div>
-                  <h1 className="font-bold text-white">Projectra</h1>
+                  <h1 className="font-bold text-white">Projectraa</h1>
                   <p className="text-xs text-slate-400 capitalize">{user?.role} Portal</p>
                 </div>
                 <div className="ml-auto">
